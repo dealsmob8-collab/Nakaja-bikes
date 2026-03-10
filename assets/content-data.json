@@ -1,0 +1,17 @@
+{
+  "dealer": "Nakaja Bikes",
+  "phoneDisplay": "0729 595 077",
+  "phoneIntl": "254729595077",
+  "whatsappUrl": "https://wa.me/254729595077",
+  "slogans": {
+    "primary": "The Strength to Carry Your Hustle",
+    "secondary": "The Strength of the Boda Boda"
+  },
+  "location": "Cnr. Busia & Enterprise Road, Industrial Area, Nairobi",
+  "warranty": "1 Year / 12,000KM Warranty",
+  "support": {
+    "pdl": "No Driving License? We help you get your Provisional Driving License (PDL) from a driving school so you can start working.",
+    "maintenance": "Service every 3,000km or 3 months using Renegade Ignitor SJ 10W40 oil to protect your 12,000km warranty.",
+    "breakIn": "During the first 1,000km, keep speed under 65km/h and avoid too much full throttle."
+  }
+}
