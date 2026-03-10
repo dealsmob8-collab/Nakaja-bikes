@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Nakaja Bikes">
+  <rect width="64" height="64" rx="10" fill="#111"/>
+  <path d="M15 41h7l6-15h6l6 15h9" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="18" cy="45" r="6" fill="none" stroke="#d32f2f" stroke-width="3"/>
+  <circle cx="46" cy="45" r="6" fill="none" stroke="#d32f2f" stroke-width="3"/>
+</svg>
