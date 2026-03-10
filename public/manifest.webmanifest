@@ -1,0 +1,16 @@
+{
+  "name": "Nakaja Bikes",
+  "short_name": "Nakaja",
+  "description": "Authorized UM Motorcycles Dealer in Nairobi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#d32f2f",
+  "icons": [
+    {
+      "src": "/public/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
