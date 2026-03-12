@@ -1,5 +1,15 @@
 const WA_BASE = "https://wa.me/254729595077";
 const PRICING_DATA_URL = "/assets/pricing-data.json";
+const PAYMENT_PERIOD_LABELS = {
+  daily: "per day",
+  weekly: "per week",
+  monthly: "per month"
+};
+const ANNOUNCEMENTS = [
+  "March Special: Free 11L Full Tank on Duty Max XL & DSRX models.",
+  "Built for daily work: 150kg max load and 1 Year / 12,000KM Warranty.",
+  "No license yet? We can guide you on PDL so you can start working."
+];
 
 let pricingDataPromise;
 
@@ -25,15 +35,10 @@ function initPromoStrip() {
   const promo = document.querySelector("[data-promo-message]");
   if (!promo) return;
 
-  const slides = [
-    "🔥 LIMITED OFFER THROUGH APRIL 15, 2026: FREE 11L Full Tank on Duty Max XL Ndume, Duty Max 125cc, and DSRX 200!",
-    "💪 THE STRENGTH TO CARRY YOUR HUSTLE: 150KG Max Load & 1-Year Warranty."
-  ];
-
   let i = 0;
   setInterval(() => {
-    i = (i + 1) % slides.length;
-    promo.textContent = slides[i];
+    i = (i + 1) % ANNOUNCEMENTS.length;
+    promo.textContent = ANNOUNCEMENTS[i];
   }, 3000);
 }
 
@@ -100,10 +105,14 @@ function isQuoteRequestPlan(plan) {
 
 function formatPlanLabel(plan) {
   if (isQuoteRequestPlan(plan)) {
-    return plan.label || "Latest approved quote on request";
+    return plan.label || "Ask on WhatsApp for today's price";
   }
 
-  return `${plan.durationMonths} months - ${plan.paymentType} Kes. ${formatKes(plan.amount)}`;
+  return `${plan.durationMonths} months - Kes. ${formatKes(plan.amount)} ${getPaymentPeriodLabel(plan.paymentType)}`;
+}
+
+function getPaymentPeriodLabel(paymentType) {
+  return PAYMENT_PERIOD_LABELS[paymentType] || `per ${paymentType}`;
 }
 
 function populateModelSelect(select, models) {
@@ -150,26 +159,24 @@ async function initCalculator() {
       if (quoteOnly) {
         output.innerHTML = `
           <p><strong>${model.name}</strong></p>
-          <p>Deposit guide: <strong>Kes. ${formatKes(data.deposit)}</strong></p>
-          <p>Pricing: <strong>${plan.label || "Latest approved quote on request"}</strong></p>
-          <p>Confirm current stock, approved quote, and booking steps on WhatsApp.</p>
+          <p>Starting deposit: <strong>Kes. ${formatKes(data.deposit)}</strong></p>
+          <p>Today's price: <strong>${plan.label || "Ask on WhatsApp"}</strong></p>
+          <p>Ask on WhatsApp for today's price, stock, and booking steps.</p>
         `;
       } else {
-        const paymentLabel = plan.paymentType === "daily" ? "per day" : "per month";
-
         output.innerHTML = `
-          <p><strong>${model.name}</strong></p>
+          <p><strong>Bike:</strong> ${model.name}</p>
           <p>Deposit: <strong>Kes. ${formatKes(data.deposit)}</strong></p>
-          <p>Plan: ${plan.durationMonths} months · <strong>Kes. ${formatKes(plan.amount)} ${paymentLabel}</strong></p>
+          <p>Plan: ${plan.durationMonths} months · <strong>Kes. ${formatKes(plan.amount)} ${getPaymentPeriodLabel(plan.paymentType)}</strong></p>
           ${model.cashPrice ? `<p>Cash price: Kes. ${formatKes(model.cashPrice)}</p>` : ""}
         `;
       }
 
       const msg = quoteOnly
-        ? `Hello Nakaja Bikes, I want the latest approved quote and stock status for ${model.name}. Please guide me on the Kes. 30,000 deposit and booking process.`
-        : `Hello Nakaja Bikes, I want to book the ${model.name} on the ${plan.durationMonths} month ${plan.paymentType} plan. Please help me with the Kes. 30,000 deposit process.`;
+        ? `Hello Nakaja Bikes, I want today's price and stock for ${model.name}. Please guide me on the Kes. 30,000 deposit and booking process.`
+        : `Hello Nakaja Bikes, I want to book the ${model.name} on the ${plan.durationMonths} month ${plan.paymentType} plan at Kes. ${formatKes(plan.amount)} ${getPaymentPeriodLabel(plan.paymentType)}. Please guide me on the Kes. 30,000 deposit process.`;
       cta.href = `${WA_BASE}?text=${encodeURIComponent(msg)}`;
-      cta.textContent = quoteOnly ? `Request ${model.name} Quote` : `Book ${model.name} Plan`;
+      cta.textContent = quoteOnly ? `Ask About ${model.name}` : `Book ${model.name} on WhatsApp`;
     };
 
     const updatePlans = () => {
@@ -195,11 +202,11 @@ async function initCalculator() {
     updatePlans();
   } catch (_) {
     output.innerHTML = `
-      <p><strong>Pricing is temporarily unavailable online.</strong></p>
-      <p>Continue on WhatsApp for the latest approved quote on Duty Max XL Ndume, DSRX 200, or Duty Max 125cc.</p>
+      <p><strong>Prices are not showing online right now.</strong></p>
+      <p>Message us on WhatsApp and we'll send the latest price and plan options.</p>
     `;
-    cta.href = `${WA_BASE}?text=${encodeURIComponent("Hello Nakaja Bikes, pricing did not load on the site. Please send me the latest approved quote options for Duty Max XL Ndume, DSRX 200, and Duty Max 125cc.")}`;
-    cta.textContent = "Ask About Featured Models";
+    cta.href = `${WA_BASE}?text=${encodeURIComponent("Hello Nakaja Bikes, prices are not showing on the site. Please send me today's price and plan options for Duty Max, Duty Punda, DSRX 200, and MAX XL models.")}`;
+    cta.textContent = "Check Bikes on WhatsApp";
   }
 }
 
@@ -267,9 +274,9 @@ function createLeadWhatsappMessage(payload) {
     payload.contact.phone ? `Phone: ${payload.contact.phone}` : "",
     payload.contact.ridingArea ? `Riding area: ${payload.contact.ridingArea}` : "",
     quoteOnly
-      ? "Quote: Latest approved quote on request"
+      ? "Today's price: Ask on WhatsApp"
       : payload.purchaseIntent.planDurationMonths
-      ? `Plan: ${payload.purchaseIntent.planDurationMonths} months - ${payload.purchaseIntent.paymentType} Kes. ${formatKes(payload.purchaseIntent.paymentAmount)}`
+      ? `Plan: ${payload.purchaseIntent.planDurationMonths} months - ${payload.purchaseIntent.paymentType} Kes. ${formatKes(payload.purchaseIntent.paymentAmount)} ${getPaymentPeriodLabel(payload.purchaseIntent.paymentType)}`
       : "",
     payload.purchaseIntent.depositTimeline ? `Deposit timeline: ${payload.purchaseIntent.depositTimeline}` : "",
     payload.purchaseIntent.pdlStatus ? `PDL status: ${payload.purchaseIntent.pdlStatus}` : "",
@@ -380,7 +387,7 @@ async function initLeadForm() {
           routed: String(result.routed)
         });
 
-        const statusMessage = `Request received. Ref ${result.leadId}. A Nakaja Bikes representative will follow up with you shortly.`;
+        const statusMessage = `Thanks. We've received your request. Ref ${result.leadId}. A Nakaja Bikes team member will contact you shortly.`;
 
         setFormStatus(
           status,
@@ -396,19 +403,19 @@ async function initLeadForm() {
         analytics.track("lead_form_error", { message: error.message });
         setFormStatus(
           status,
-          "We could not save your details online. Continue on WhatsApp below for faster help.",
+          "We could not save your request online. Continue on WhatsApp below for faster help.",
           "error"
         );
       } finally {
         submitButton.disabled = false;
-        submitButton.textContent = "Request Callback";
+        submitButton.textContent = "Send My Request";
         refreshWhatsappLink();
       }
     });
 
     syncPlans();
   } catch (_) {
-    setFormStatus(status, "Lead form is temporarily unavailable. Continue on WhatsApp below.", "error");
+    setFormStatus(status, "This form is not available right now. Continue on WhatsApp below.", "error");
     submitButton.disabled = true;
   }
 }
@@ -418,7 +425,7 @@ function initSupportWidget() {
   if (!btn) return;
 
   btn.addEventListener("click", () => {
-    window.location.href = `${WA_BASE}?text=${encodeURIComponent("Hello Nakaja Bikes, I need support choosing the right bike and financing plan.")}`;
+    window.location.href = `${WA_BASE}?text=${encodeURIComponent("Hello Nakaja Bikes, I need help choosing the right bike and plan.")}`;
   });
 }
 
