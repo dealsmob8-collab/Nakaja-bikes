@@ -380,15 +380,7 @@ async function initLeadForm() {
           routed: String(result.routed)
         });
 
-        const deliveryLabel = result.stored
-          ? "saved to the sales backend"
-          : result.routed
-            ? "forwarded to the sales workflow"
-            : "validated in preview mode";
-
-        const statusMessage = result.stored || result.routed
-          ? `Request received. Ref ${result.leadId}. Your lead was ${deliveryLabel}.`
-          : `Request received. Ref ${result.leadId}. It was ${deliveryLabel}. Add Supabase env vars in Cloudflare to persist new leads.`;
+        const statusMessage = `Request received. Ref ${result.leadId}. A Nakaja Bikes representative will follow up with you shortly.`;
 
         setFormStatus(
           status,
