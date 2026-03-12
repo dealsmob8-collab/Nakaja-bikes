@@ -4,13 +4,19 @@
   "models": [
     {
       "id": "duty-max-150",
-      "name": "Duty Max XL Ndume (150cc)",
+      "name": "Duty Max XL Ndume",
       "cashPrice": 165000,
       "plans": [
         { "durationMonths": 12, "paymentType": "daily", "amount": 570 },
         { "durationMonths": 16, "paymentType": "daily", "amount": 509 },
-        { "durationMonths": 18, "paymentType": "daily", "amount": 440 },
-        { "durationMonths": 24, "paymentType": "monthly", "amount": 370 }
+        { "durationMonths": 18, "paymentType": "daily", "amount": 440 }
+      ]
+    },
+    {
+      "id": "dsrx-200",
+      "name": "DSRX 200",
+      "plans": [
+        { "durationMonths": 0, "paymentType": "quote_request", "amount": 0, "label": "Latest approved quote on request" }
       ]
     },
     {
@@ -20,28 +26,17 @@
       "plans": [
         { "durationMonths": 12, "paymentType": "daily", "amount": 624 },
         { "durationMonths": 16, "paymentType": "daily", "amount": 478 },
-        { "durationMonths": 18, "paymentType": "daily", "amount": 442 },
-        { "durationMonths": 24, "paymentType": "monthly", "amount": 390 }
-      ]
-    },
-    {
-      "id": "duty-punda-150",
-      "name": "Duty Punda 150cc",
-      "plans": [
-        { "durationMonths": 16, "paymentType": "daily", "amount": 462 },
-        { "durationMonths": 18, "paymentType": "daily", "amount": 427 }
-      ]
-    },
-    {
-      "id": "duty-punda-125",
-      "name": "Duty Punda 125cc",
-      "plans": [
-        { "durationMonths": 16, "paymentType": "daily", "amount": 443 },
-        { "durationMonths": 18, "paymentType": "daily", "amount": 410 }
+        { "durationMonths": 18, "paymentType": "daily", "amount": 442 }
       ]
     }
   ],
   "otherModels": [
+    {
+      "name": "Duty Punda 150cc"
+    },
+    {
+      "name": "Duty Punda 125cc"
+    },
     {
       "name": "MAX RS 150cc",
       "cashPrice": 149900

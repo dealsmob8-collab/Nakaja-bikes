@@ -1,0 +1,128 @@
+{
+  "bucket": "nakaja-assets",
+  "sourceDir": "/home/paulaflare/Desktop/images",
+  "uploadedAt": "2026-03-12T00:37:46.500Z",
+  "bucketCreated": true,
+  "fileCount": 17,
+  "assets": [
+    {
+      "fileName": "2521-768x542_rbkzjj.png",
+      "localPath": "/home/paulaflare/Desktop/images/2521-768x542_rbkzjj.png",
+      "bytes": 196017,
+      "objectPath": "2521-768x542_rbkzjj.png",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/2521-768x542_rbkzjj.png"
+    },
+    {
+      "fileName": "Duty_Max_w41vq3.png",
+      "localPath": "/home/paulaflare/Desktop/images/Duty_Max_w41vq3.png",
+      "bytes": 626112,
+      "objectPath": "Duty_Max_w41vq3.png",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/Duty_Max_w41vq3.png"
+    },
+    {
+      "fileName": "MAX-XL-125_2024-Black-Red-02-Safety-768x892_wc0uh7.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/MAX-XL-125_2024-Black-Red-02-Safety-768x892_wc0uh7.jpg",
+      "bytes": 102018,
+      "objectPath": "MAX-XL-125_2024-Black-Red-02-Safety-768x892_wc0uh7.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/MAX-XL-125_2024-Black-Red-02-Safety-768x892_wc0uh7.jpg"
+    },
+    {
+      "fileName": "MAX-XL-125_2024-Black-Red-768x542_ea8iqd.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/MAX-XL-125_2024-Black-Red-768x542_ea8iqd.jpg",
+      "bytes": 119227,
+      "objectPath": "MAX-XL-125_2024-Black-Red-768x542_ea8iqd.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/MAX-XL-125_2024-Black-Red-768x542_ea8iqd.jpg"
+    },
+    {
+      "fileName": "MAX-XL-125_2024-Red-Black-768x542_1_etovyg.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/MAX-XL-125_2024-Red-Black-768x542_1_etovyg.jpg",
+      "bytes": 122239,
+      "objectPath": "MAX-XL-125_2024-Red-Black-768x542_1_etovyg.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/MAX-XL-125_2024-Red-Black-768x542_1_etovyg.jpg"
+    },
+    {
+      "fileName": "UM_Range_DSRX_single_img_1-768x892_qlj4yi.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_DSRX_single_img_1-768x892_qlj4yi.jpg",
+      "bytes": 52110,
+      "objectPath": "UM_Range_DSRX_single_img_1-768x892_qlj4yi.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DSRX_single_img_1-768x892_qlj4yi.jpg"
+    },
+    {
+      "fileName": "UM_Range_DSRX_single_img_2-768x892_d2onpn.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_DSRX_single_img_2-768x892_d2onpn.jpg",
+      "bytes": 92958,
+      "objectPath": "UM_Range_DSRX_single_img_2-768x892_d2onpn.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DSRX_single_img_2-768x892_d2onpn.jpg"
+    },
+    {
+      "fileName": "UM_Range_DSRX_single_img_3-1-768x892_cy4x99.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_DSRX_single_img_3-1-768x892_cy4x99.jpg",
+      "bytes": 97369,
+      "objectPath": "UM_Range_DSRX_single_img_3-1-768x892_cy4x99.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DSRX_single_img_3-1-768x892_cy4x99.jpg"
+    },
+    {
+      "fileName": "UM_Range_DSRX_single_img_4-768x892_xymxvj.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_DSRX_single_img_4-768x892_xymxvj.jpg",
+      "bytes": 92611,
+      "objectPath": "UM_Range_DSRX_single_img_4-768x892_xymxvj.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DSRX_single_img_4-768x892_xymxvj.jpg"
+    },
+    {
+      "fileName": "UM_Range_DutyMax_single_img_2-768x892_ua98v3.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_DutyMax_single_img_2-768x892_ua98v3.jpg",
+      "bytes": 85850,
+      "objectPath": "UM_Range_DutyMax_single_img_2-768x892_ua98v3.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DutyMax_single_img_2-768x892_ua98v3.jpg"
+    },
+    {
+      "fileName": "UM_Range_DutyMax_single_img_3-768x892_c3rfns.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_DutyMax_single_img_3-768x892_c3rfns.jpg",
+      "bytes": 81859,
+      "objectPath": "UM_Range_DutyMax_single_img_3-768x892_c3rfns.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DutyMax_single_img_3-768x892_c3rfns.jpg"
+    },
+    {
+      "fileName": "UM_Range_DutyMax_single_img_4-768x892_bzi271.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_DutyMax_single_img_4-768x892_bzi271.jpg",
+      "bytes": 90157,
+      "objectPath": "UM_Range_DutyMax_single_img_4-768x892_bzi271.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DutyMax_single_img_4-768x892_bzi271.jpg"
+    },
+    {
+      "fileName": "UM_Range_MaxRS_single_img_1-768x892_zgaakq.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_MaxRS_single_img_1-768x892_zgaakq.jpg",
+      "bytes": 102487,
+      "objectPath": "UM_Range_MaxRS_single_img_1-768x892_zgaakq.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_MaxRS_single_img_1-768x892_zgaakq.jpg"
+    },
+    {
+      "fileName": "UM_Range_MaxRS_single_img_2-768x892_axmxlq.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_MaxRS_single_img_2-768x892_axmxlq.jpg",
+      "bytes": 90696,
+      "objectPath": "UM_Range_MaxRS_single_img_2-768x892_axmxlq.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_MaxRS_single_img_2-768x892_axmxlq.jpg"
+    },
+    {
+      "fileName": "UM_Range_MaxRS_single_img_3-768x892_zucdfp.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_MaxRS_single_img_3-768x892_zucdfp.jpg",
+      "bytes": 92587,
+      "objectPath": "UM_Range_MaxRS_single_img_3-768x892_zucdfp.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_MaxRS_single_img_3-768x892_zucdfp.jpg"
+    },
+    {
+      "fileName": "UM_Range_MaxRS_single_img_4-768x892_tbrmis.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_MaxRS_single_img_4-768x892_tbrmis.jpg",
+      "bytes": 98061,
+      "objectPath": "UM_Range_MaxRS_single_img_4-768x892_tbrmis.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_MaxRS_single_img_4-768x892_tbrmis.jpg"
+    },
+    {
+      "fileName": "UM_Range_MaxRS_single_img_5-768x892_kdinlh.jpg",
+      "localPath": "/home/paulaflare/Desktop/images/UM_Range_MaxRS_single_img_5-768x892_kdinlh.jpg",
+      "bytes": 86791,
+      "objectPath": "UM_Range_MaxRS_single_img_5-768x892_kdinlh.jpg",
+      "publicUrl": "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_MaxRS_single_img_5-768x892_kdinlh.jpg"
+    }
+  ]
+}
