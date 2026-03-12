@@ -8,9 +8,10 @@
   "theme_color": "#d32f2f",
   "icons": [
     {
-      "src": "/public/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "/public/logo-nakaja.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
