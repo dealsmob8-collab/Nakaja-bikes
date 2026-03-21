@@ -2,3 +2,4 @@
 .dev.vars*
 .env*
 !.dev.vars.example
+!.env.cloudflare.example

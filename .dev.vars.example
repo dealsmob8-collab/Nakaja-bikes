@@ -1,0 +1,9 @@
+SUPABASE_URL=https://your-project-ref.supabase.co
+SUPABASE_SECRET_KEY=your-supabase-secret-key
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
+SUPABASE_LEADS_TABLE=leads
+CRM_WEBHOOK_URL=https://example.com/your-crm-webhook
+CRM_WEBHOOK_TOKEN=replace-me-if-needed
+CRM_WEBHOOK_TOKEN_HEADER=Authorization
+CRM_WEBHOOK_TOKEN_PREFIX=Bearer 
+CRM_WEBHOOK_SECRET=optional-shared-secret
