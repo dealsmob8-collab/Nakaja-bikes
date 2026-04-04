@@ -80,7 +80,7 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  min-height: 52px;
+  min-height: 84px;
   padding: 14px 18px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   background: linear-gradient(90deg, #cb202d 0%, #d8302f 45%, #9f1625 100%);
@@ -117,6 +117,10 @@ textarea {
 
 .promo-message,
 .promo-strip p {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.7em;
   font-size: 0.95rem;
   line-height: 1.35;
   font-weight: 800;
@@ -1150,6 +1154,7 @@ textarea {
   }
 
   .promo-strip {
+    min-height: 132px;
     padding: 12px 14px;
     gap: 0.55rem;
   }
@@ -1160,25 +1165,31 @@ textarea {
     font-size: 0.88rem;
   }
 
+  .promo-message,
+  .promo-strip p {
+    min-height: 4.05em;
+  }
+
   .promo-link {
     max-width: 100%;
     white-space: normal;
   }
 
   .nav {
-    gap: 0.8rem;
+    justify-content: center;
+    gap: 0;
     padding: 12px 0;
   }
 
   .brand-logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
   }
 
-  .tag {
-    font-size: 0.74rem;
-    max-width: 11rem;
+  .brand-copy,
+  .nav > .button {
+    display: none;
   }
 
   .hero,
