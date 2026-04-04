@@ -1,45 +1,124 @@
 {
   "currency": "KES",
   "deposit": 30000,
+  "promotion": {
+    "label": "Free full tank + first service on every purchase",
+    "endsAt": "2026-05-01"
+  },
   "models": [
     {
       "id": "duty-max-150",
-      "name": "Duty Max XL Ndume",
+      "name": "Duty Max 150CC",
       "cashPrice": 165000,
+      "warranty": "1 year / 12,000 km",
       "plans": [
-        { "durationMonths": 12, "paymentType": "daily", "amount": 570 },
-        { "durationMonths": 16, "paymentType": "daily", "amount": 509 },
-        { "durationMonths": 18, "paymentType": "daily", "amount": 440 }
-      ]
-    },
-    {
-      "id": "dsrx-200",
-      "name": "DSRX 200",
-      "plans": [
-        { "durationMonths": 0, "paymentType": "quote_request", "amount": 0, "label": "Latest approved quote on request" }
+        {
+          "id": "fortune-credit-weekly",
+          "provider": "Fortune Credit",
+          "paymentType": "fortune_weekly",
+          "paymentCadence": "week",
+          "deposit": 30000,
+          "amount": 4363
+        },
+        {
+          "id": "watu-monthly",
+          "provider": "Watu",
+          "paymentType": "watu_monthly",
+          "paymentCadence": "month",
+          "deposit": 58000,
+          "amount": 2736,
+          "requiresApproval": true
+        },
+        {
+          "id": "cash",
+          "provider": "Cash",
+          "paymentType": "cash",
+          "paymentCadence": "once",
+          "deposit": 165000,
+          "amount": 165000
+        }
       ]
     },
     {
       "id": "duty-max-125",
-      "name": "Duty Max 125cc",
+      "name": "Duty Max 125CC",
       "cashPrice": 155000,
+      "warranty": "1 year / 12,000 km",
       "plans": [
-        { "durationMonths": 12, "paymentType": "daily", "amount": 624 },
-        { "durationMonths": 16, "paymentType": "daily", "amount": 478 },
-        { "durationMonths": 18, "paymentType": "daily", "amount": 442 }
+        {
+          "id": "fortune-credit-weekly",
+          "provider": "Fortune Credit",
+          "paymentType": "fortune_weekly",
+          "paymentCadence": "week",
+          "deposit": 30000,
+          "amount": 4099
+        },
+        {
+          "id": "watu-monthly",
+          "provider": "Watu",
+          "paymentType": "watu_monthly",
+          "paymentCadence": "month",
+          "deposit": 55000,
+          "amount": 2557,
+          "requiresApproval": true
+        },
+        {
+          "id": "cash",
+          "provider": "Cash",
+          "paymentType": "cash",
+          "paymentCadence": "once",
+          "deposit": 155000,
+          "amount": 155000
+        }
       ]
-    }
-  ],
-  "otherModels": [
-    {
-      "name": "Duty Punda 150cc"
     },
     {
-      "name": "Duty Punda 125cc"
+      "id": "duty-max-punda-150",
+      "name": "Duty Max Punda 150CC",
+      "cashPrice": 149900,
+      "warranty": "1 year / 12,000 km",
+      "plans": [
+        {
+          "id": "fortune-credit-weekly",
+          "provider": "Fortune Credit",
+          "paymentType": "fortune_weekly",
+          "paymentCadence": "week",
+          "deposit": 30000,
+          "amount": 3964
+        },
+        {
+          "id": "cash",
+          "provider": "Cash",
+          "paymentType": "cash",
+          "paymentCadence": "once",
+          "deposit": 149900,
+          "amount": 149900
+        }
+      ]
     },
     {
-      "name": "MAX RS 150cc",
-      "cashPrice": 149900
+      "id": "duty-max-punda-125",
+      "name": "Duty Max Punda 125CC",
+      "cashPrice": 143900,
+      "warranty": "1 year / 12,000 km",
+      "plans": [
+        {
+          "id": "fortune-credit-weekly",
+          "provider": "Fortune Credit",
+          "paymentType": "fortune_weekly",
+          "paymentCadence": "week",
+          "deposit": 30000,
+          "amount": 3805
+        },
+        {
+          "id": "cash",
+          "provider": "Cash",
+          "paymentType": "cash",
+          "paymentCadence": "once",
+          "deposit": 143900,
+          "amount": 143900
+        }
+      ]
     }
   ]
 }

@@ -26,8 +26,8 @@ function initPromoStrip() {
   if (!promo) return;
 
   const slides = [
-    "🔥 LIMITED OFFER THROUGH APRIL 15, 2026: FREE 11L Full Tank on Duty Max XL Ndume, Duty Max 125cc, and DSRX 200!",
-    "💪 THE STRENGTH TO CARRY YOUR HUSTLE: 150KG Max Load & 1-Year Warranty."
+    "Free full tank + first service on every purchase until 1 May 2026.",
+    "1 year / 12,000 km warranty, WhatsApp support, and PDL help from our Nairobi team."
   ];
 
   let i = 0;
@@ -71,39 +71,43 @@ function getModel(data, modelId) {
 }
 
 function buildPlanValue(plan) {
-  return `${plan.durationMonths}:${plan.paymentType}:${plan.amount}`;
-}
-
-function parsePlanValue(value) {
-  const [durationMonths, paymentType, amount] = String(value || "").split(":");
-  return {
-    durationMonths: Number(durationMonths),
-    paymentType: paymentType || "",
-    amount: Number(amount)
-  };
+  return String(plan?.id || plan?.paymentType || "cash");
 }
 
 function getPlan(model, planValue) {
-  const parsed = parsePlanValue(planValue);
-  return (
-    model.plans.find((plan) => (
-      plan.durationMonths === parsed.durationMonths &&
-      plan.paymentType === parsed.paymentType &&
-      plan.amount === parsed.amount
-    )) || model.plans[0]
-  );
+  return model.plans.find((plan) => buildPlanValue(plan) === String(planValue || "")) || model.plans[0];
 }
 
 function isQuoteRequestPlan(plan) {
   return plan?.paymentType === "quote_request";
 }
 
-function formatPlanLabel(plan) {
+function getCadenceLabel(plan) {
+  if (plan?.paymentCadence === "week") return "per week";
+  if (plan?.paymentCadence === "month") return "per month";
+  return "cash price";
+}
+
+function formatPlanSummary(plan) {
+  if (!plan) return "";
   if (isQuoteRequestPlan(plan)) {
-    return plan.label || "Latest approved quote on request";
+    return plan.label || "Current quote on request";
   }
 
-  return `${plan.durationMonths} months - ${plan.paymentType} Kes. ${formatKes(plan.amount)}`;
+  if (plan.paymentType === "cash") {
+    return `Cash price KSh ${formatKes(plan.amount)}`;
+  }
+
+  const approvalNote = plan.requiresApproval ? " (when approved)" : "";
+  return `${plan.provider}${approvalNote}: KSh ${formatKes(plan.deposit)} deposit + KSh ${formatKes(plan.amount)} ${getCadenceLabel(plan)}`;
+}
+
+function formatPlanLabel(plan) {
+  if (isQuoteRequestPlan(plan)) {
+    return plan.label || "Current quote on request";
+  }
+
+  return formatPlanSummary(plan);
 }
 
 function populateModelSelect(select, models) {
@@ -150,26 +154,23 @@ async function initCalculator() {
       if (quoteOnly) {
         output.innerHTML = `
           <p><strong>${model.name}</strong></p>
-          <p>Deposit guide: <strong>Kes. ${formatKes(data.deposit)}</strong></p>
-          <p>Pricing: <strong>${plan.label || "Latest approved quote on request"}</strong></p>
-          <p>Confirm current stock, approved quote, and booking steps on WhatsApp.</p>
+          <p><strong>${plan.label || "Current quote on request"}</strong></p>
+          <p>WhatsApp us to confirm stock and next steps.</p>
         `;
       } else {
-        const paymentLabel = plan.paymentType === "daily" ? "per day" : "per month";
-
         output.innerHTML = `
           <p><strong>${model.name}</strong></p>
-          <p>Deposit: <strong>Kes. ${formatKes(data.deposit)}</strong></p>
-          <p>Plan: ${plan.durationMonths} months · <strong>Kes. ${formatKes(plan.amount)} ${paymentLabel}</strong></p>
-          ${model.cashPrice ? `<p>Cash price: Kes. ${formatKes(model.cashPrice)}</p>` : ""}
+          <p><strong>${formatPlanSummary(plan)}</strong></p>
+          <p>Warranty: ${model.warranty || "1 year / 12,000 km"}</p>
+          ${plan.requiresApproval ? "<p>Watu financing shows only where approval is available for that model.</p>" : ""}
         `;
       }
 
       const msg = quoteOnly
-        ? `Hello Nakaja Bikes, I want the latest approved quote and stock status for ${model.name}. Please guide me on the Kes. 30,000 deposit and booking process.`
-        : `Hello Nakaja Bikes, I want to book the ${model.name} on the ${plan.durationMonths} month ${plan.paymentType} plan. Please help me with the Kes. 30,000 deposit process.`;
+        ? `Hello Nakaja Bikes, I want the current quote and stock status for ${model.name}.`
+        : `Hello Nakaja Bikes, I want ${model.name}. Please confirm this option: ${formatPlanSummary(plan)}.`;
       cta.href = `${WA_BASE}?text=${encodeURIComponent(msg)}`;
-      cta.textContent = quoteOnly ? `Request ${model.name} Quote` : `Book ${model.name} Plan`;
+      cta.textContent = quoteOnly ? `Request ${model.name} quote` : `Get this price now`;
     };
 
     const updatePlans = () => {
@@ -196,10 +197,10 @@ async function initCalculator() {
   } catch (_) {
     output.innerHTML = `
       <p><strong>Pricing is temporarily unavailable online.</strong></p>
-      <p>Continue on WhatsApp for the latest approved quote on Duty Max XL Ndume, DSRX 200, or Duty Max 125cc.</p>
+      <p>Continue on WhatsApp for the latest Duty Max prices and financing options.</p>
     `;
-    cta.href = `${WA_BASE}?text=${encodeURIComponent("Hello Nakaja Bikes, pricing did not load on the site. Please send me the latest approved quote options for Duty Max XL Ndume, DSRX 200, and Duty Max 125cc.")}`;
-    cta.textContent = "Ask About Featured Models";
+    cta.href = `${WA_BASE}?text=${encodeURIComponent("Hello Nakaja Bikes, pricing did not load on the site. Please send me the latest Duty Max cash, Fortune Credit, and Watu options.")}`;
+    cta.textContent = "Ask about Duty Max prices";
   }
 }
 
@@ -245,10 +246,13 @@ function buildLeadPayload(form, data) {
       ridingArea: String(formData.get("ridingArea") || "").trim()
     },
     purchaseIntent: {
-      deposit: data.deposit,
+      deposit: Number(plan?.deposit || model?.cashPrice || data.deposit || 0),
       modelId: model.id,
       modelName: model.name,
-      planDurationMonths: plan.durationMonths,
+      planDurationMonths: Number(plan?.durationMonths || 0),
+      planProvider: String(plan?.provider || ""),
+      paymentCadence: String(plan?.paymentCadence || ""),
+      requiresApproval: Boolean(plan?.requiresApproval),
       paymentType: plan.paymentType,
       paymentAmount: plan.amount,
       pdlStatus: String(formData.get("pdlStatus") || ""),
@@ -261,16 +265,18 @@ function buildLeadPayload(form, data) {
 
 function createLeadWhatsappMessage(payload) {
   const quoteOnly = payload.purchaseIntent.paymentType === "quote_request";
+  const planLine = quoteOnly
+    ? "Plan: Current quote on request"
+    : payload.purchaseIntent.paymentType === "cash"
+      ? `Plan: Cash price KSh ${formatKes(payload.purchaseIntent.paymentAmount)}`
+      : `Plan: ${payload.purchaseIntent.planProvider}${payload.purchaseIntent.requiresApproval ? " (when approved)" : ""} - KSh ${formatKes(payload.purchaseIntent.deposit)} deposit + KSh ${formatKes(payload.purchaseIntent.paymentAmount)} per ${payload.purchaseIntent.paymentCadence}`;
+
   const lines = [
     `Hello Nakaja Bikes, I want help with ${payload.purchaseIntent.modelName}.`,
     payload.contact.fullName ? `Name: ${payload.contact.fullName}` : "",
     payload.contact.phone ? `Phone: ${payload.contact.phone}` : "",
     payload.contact.ridingArea ? `Riding area: ${payload.contact.ridingArea}` : "",
-    quoteOnly
-      ? "Quote: Latest approved quote on request"
-      : payload.purchaseIntent.planDurationMonths
-      ? `Plan: ${payload.purchaseIntent.planDurationMonths} months - ${payload.purchaseIntent.paymentType} Kes. ${formatKes(payload.purchaseIntent.paymentAmount)}`
-      : "",
+    planLine,
     payload.purchaseIntent.depositTimeline ? `Deposit timeline: ${payload.purchaseIntent.depositTimeline}` : "",
     payload.purchaseIntent.pdlStatus ? `PDL status: ${payload.purchaseIntent.pdlStatus}` : "",
     payload.purchaseIntent.notes ? `Notes: ${payload.purchaseIntent.notes}` : ""
@@ -426,7 +432,7 @@ function initSupportWidget() {
   if (!btn) return;
 
   btn.addEventListener("click", () => {
-    window.location.href = `${WA_BASE}?text=${encodeURIComponent("Hello Nakaja Bikes, I need support choosing the right bike and financing plan.")}`;
+    window.location.href = `${WA_BASE}?text=${encodeURIComponent("Hello Nakaja Bikes, I need help choosing a Duty Max bike, checking payment options, and sorting PDL support.")}`;
   });
 }
 

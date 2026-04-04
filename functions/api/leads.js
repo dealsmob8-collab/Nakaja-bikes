@@ -64,6 +64,9 @@ async function readPayload(request) {
       modelId: formData.get("bikeModel"),
       modelName: formData.get("bikeModel"),
       planDurationMonths: Number(formData.get("planDurationMonths") || 0),
+      planProvider: formData.get("planProvider"),
+      paymentCadence: formData.get("paymentCadence"),
+      requiresApproval: String(formData.get("requiresApproval") || "") === "true",
       paymentType: formData.get("paymentType"),
       paymentAmount: Number(formData.get("paymentAmount") || 0),
       pdlStatus: formData.get("pdlStatus"),
@@ -84,6 +87,9 @@ function validatePayload(payload) {
   const isQuoteRequest = paymentType === "quote_request";
   const pdlStatus = sanitizeString(payload?.purchaseIntent?.pdlStatus);
   const depositTimeline = sanitizeString(payload?.purchaseIntent?.depositTimeline);
+  const planProvider = sanitizeString(payload?.purchaseIntent?.planProvider);
+  const paymentCadence = sanitizeString(payload?.purchaseIntent?.paymentCadence);
+  const requiresApproval = Boolean(payload?.purchaseIntent?.requiresApproval);
   const consent = Boolean(payload?.consent);
   const planDurationMonths = Number(payload?.purchaseIntent?.planDurationMonths || 0);
   const paymentAmount = Number(payload?.purchaseIntent?.paymentAmount || 0);
@@ -97,7 +103,7 @@ function validatePayload(payload) {
     return { ok: false, error: "Missing required purchase intent fields." };
   }
 
-  if (!isQuoteRequest && (!planDurationMonths || !paymentAmount)) {
+  if (!isQuoteRequest && !paymentAmount) {
     return { ok: false, error: "Missing required financing plan fields." };
   }
 
@@ -132,6 +138,9 @@ function validatePayload(payload) {
         modelId,
         modelName,
         planDurationMonths,
+        planProvider,
+        paymentCadence,
+        requiresApproval,
         paymentType,
         paymentAmount,
         pdlStatus,
