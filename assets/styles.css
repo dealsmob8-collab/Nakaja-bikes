@@ -208,6 +208,91 @@ textarea {
   padding: 24px;
 }
 
+.hero.hero-section {
+  position: relative;
+  display: block;
+  min-height: min(760px, calc(100svh - 132px));
+  overflow: hidden;
+  padding: 0;
+  background: #fff;
+  isolation: isolate;
+}
+
+.hero-visual,
+.hero-image,
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-visual {
+  display: block;
+}
+
+.hero img.hero-image,
+.hero-image {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  object-fit: cover;
+  object-position: center center;
+  box-shadow: none;
+  animation: hero-image-in 900ms ease-out both;
+}
+
+.hero-overlay {
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.08) 34%,
+    rgba(28, 7, 7, 0.72) 76%,
+    #130505 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: inherit;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4.5rem 0 4rem;
+  text-align: center;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  box-shadow: 0 14px 30px rgba(211, 47, 47, 0.28);
+  animation: hero-copy-in 700ms ease-out both;
+}
+
+.hero-pill::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+
 .eyebrow {
   font-size: 0.79rem;
   font-weight: 900;
@@ -232,6 +317,22 @@ textarea {
 
 .hero h1 {
   margin-top: 14px;
+}
+
+.hero.hero-section h1 {
+  max-width: 900px;
+  margin: 1rem 0;
+  color: #fff;
+  font-size: clamp(2.5rem, 8vw, 5.3rem);
+  line-height: 0.94;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+  animation: hero-copy-in 700ms ease-out 80ms both;
+}
+
+.hero.hero-section h1 span {
+  display: block;
+  color: #ef1212;
 }
 
 .hero-copy,
@@ -260,6 +361,15 @@ textarea {
 .hero-copy {
   margin-top: 18px;
   max-width: 60ch;
+}
+
+.hero-section .hero-copy {
+  max-width: 620px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 1rem;
+  line-height: 1.7;
+  animation: hero-copy-in 700ms ease-out 160ms both;
 }
 
 .hero-pills {
@@ -295,6 +405,12 @@ textarea {
   margin-top: 28px;
 }
 
+.hero-section .hero-ctas {
+  justify-content: center;
+  margin-top: 1.6rem;
+  animation: hero-copy-in 700ms ease-out 220ms both;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -322,6 +438,13 @@ textarea {
   border-color: rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.04);
   color: #fff;
+}
+
+.hero-outline-button {
+  border-color: rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  backdrop-filter: blur(8px);
 }
 
 .button:hover,
@@ -993,6 +1116,30 @@ textarea {
   padding-top: 72px;
 }
 
+@keyframes hero-image-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 759px) {
   .container {
     width: min(100%, calc(100% - 32px));
@@ -1073,6 +1220,47 @@ textarea {
   .form-actions .button,
   .nav > .button {
     width: 100%;
+  }
+
+  .hero.hero-section {
+    min-height: min(720px, calc(100svh - 168px));
+  }
+
+  .hero img.hero-image,
+  .hero-image {
+    min-height: 0;
+    object-position: center center;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .hero-content {
+    justify-content: flex-end;
+    padding: 3rem 0 3.5rem;
+  }
+
+  .hero-pill {
+    padding: 0.65rem 1rem;
+    font-size: 0.66rem;
+  }
+
+  .hero.hero-section h1 {
+    margin: 0.85rem 0;
+    font-size: clamp(2.4rem, 12vw, 3.5rem);
+  }
+
+  .hero-section .hero-copy {
+    max-width: 31rem;
+    font-size: 0.95rem;
+  }
+
+  .hero-section .hero-ctas {
+    width: 100%;
+  }
+
+  .hero-section .hero-ctas .button {
+    width: 100%;
+    text-align: center;
   }
 
   .card,

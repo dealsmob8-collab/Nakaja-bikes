@@ -1,7 +1,7 @@
 const WA_BASE = "https://wa.me/254729595077";
 const PRICING_DATA_URL = "/assets/pricing-data.json";
 const PROMO_MESSAGE =
-  "Running up to 1st May — Full tank and first service free on all purchases on any model.";
+  "Free full tank + first service on every purchase until 1 May 2026.";
 
 const PAYMENT_PERIOD_LABELS = {
   weekly: "per week",
@@ -72,8 +72,22 @@ function bindTrackedClicks(root = document) {
 }
 
 function initPromoStrip() {
+  const slides = [
+    PROMO_MESSAGE,
+    "1 year / 12,000 km warranty, WhatsApp support, and PDL help from our Nairobi team."
+  ];
+
   document.querySelectorAll("[data-promo-message]").forEach((promo) => {
-    promo.textContent = PROMO_MESSAGE;
+    let slideIndex = 0;
+    promo.textContent = slides[slideIndex];
+
+    if (promo.dataset.promoTimerBound === "true") return;
+    promo.dataset.promoTimerBound = "true";
+
+    setInterval(() => {
+      slideIndex = (slideIndex + 1) % slides.length;
+      promo.textContent = slides[slideIndex];
+    }, 3000);
   });
 }
 
@@ -275,7 +289,7 @@ function getStartPlan(plans) {
 }
 
 function appendPromoLine(lines, promoText) {
-  const promoLine = "I have also seen the offer for full tank and first service free up to 1st May.";
+  const promoLine = "I also saw the free full tank + first service offer running until 1 May 2026.";
   const nextMessage = [...lines, promoLine].filter(Boolean).join("\n");
   if (!promoText || nextMessage.length > 420) return lines;
   return [...lines, promoLine];
@@ -412,7 +426,7 @@ function buildProductCard(product, catalog) {
         <h3>${escapeHtml(product.name)}</h3>
       </a>
       <p class="model-price">${formatKes(product.cashPrice)}</p>
-      <p>${escapeHtml(product.shortDescription || "Open the product page to review details and approved plan options.")}</p>
+      <p>${escapeHtml(product.shortDescription || "Open the product page to review details and payment options.")}</p>
       <p class="small-note">${escapeHtml(financeLine)}</p>
       <div class="card-actions">
         <a class="text-link" href="/product/${escapeHtml(product.slug)}" data-track="model_details_open" data-track-payload='${escapeHtml(JSON.stringify({ product_slug: product.slug }))}'>View full details</a>
@@ -444,7 +458,7 @@ function buildFinanceGuideCard(product, catalog) {
       <p class="model-price">${escapeHtml(formatKes(product.cashPrice))}</p>
       ${
         planBlocks ||
-        `<p class="small-note">No published Fortune/Watu rows online for this model yet. Ask on WhatsApp for current finance options.</p>`
+        `<p class="small-note">No Fortune/Watu plans are listed online for this model yet. Ask on WhatsApp for current finance options.</p>`
       }
       <a class="text-link" href="/product/${escapeHtml(product.slug)}" data-track="plan_viewed" data-track-payload='${escapeHtml(JSON.stringify({ product_slug: product.slug, financier: fortunePlan?.financier || watuPlan?.financier || "none", tenure: fortunePlan?.tenureMonths || watuPlan?.tenureMonths || 0, payment_frequency: fortunePlan?.paymentFrequency || watuPlan?.paymentFrequency || "none" }))}'>Open finance details</a>
     </article>
@@ -500,7 +514,7 @@ async function initCalculator() {
         output.innerHTML = `
           <p><strong>${escapeHtml(product.name)}</strong></p>
           <p>Cash price: <strong>${escapeHtml(formatKes(product.cashPrice))}</strong></p>
-          <p>No published Fortune/Watu rows are online for this model yet.</p>
+          <p>No Fortune/Watu plans are listed online for this model yet.</p>
           <p>Ask on WhatsApp for current finance options and stock.</p>
         `;
         cta.href = buildWhatsappUrl(buildFinanceWhatsappMessage(product, plan));
@@ -549,13 +563,13 @@ async function initCalculator() {
     syncPlans();
   } catch (_) {
     output.innerHTML = `
-      <p><strong>Prices are not showing online right now.</strong></p>
-      <p>Message us on WhatsApp and we will send today's cash price and plan options.</p>
+      <p><strong>Pricing is temporarily unavailable online.</strong></p>
+      <p>Continue on WhatsApp for the latest Duty Max prices and financing options.</p>
     `;
     cta.href = buildWhatsappUrl(
-      "Hello Nakaja Bikes, prices are not showing on the site. Please send me today's cash price and finance options for your available models."
+      "Hello Nakaja Bikes, pricing did not load on the site. Please send me the latest Duty Max cash, Fortune Credit, and Watu options."
     );
-    cta.textContent = "Check bikes on WhatsApp";
+    cta.textContent = "Ask about Duty Max prices";
   }
 }
 
@@ -742,7 +756,7 @@ async function initLeadForm() {
         );
       } finally {
         submitButton.disabled = false;
-        submitButton.textContent = "Send My Request";
+        submitButton.textContent = "Request Callback";
         refreshWhatsappLink();
       }
     });
@@ -778,14 +792,14 @@ function buildProductSummaryCards(product, fortunePlans, watuPlans) {
       ? buildSummaryCard(
           "Fortune Start With",
           formatKes(getMinimumDeposit(fortunePlans)),
-          "Weekly repayment rows are listed below."
+          "Weekly repayment plans are listed below."
         )
       : "",
     watuPlans.length
       ? buildSummaryCard(
           "Watu Start With",
           formatKes(getMinimumDeposit(watuPlans)),
-          "Monthly repayment rows are listed below."
+          "Monthly repayment plans are listed below."
         )
       : ""
   ]
@@ -1005,7 +1019,7 @@ function buildFinanceSection(product, fortunePlans, watuPlans) {
           <p>Choose the repayment option that works best for your budget.</p>
         </div>
         <article class="finance-card is-empty-finance">
-          <h3>Finance rows are not published for this model yet</h3>
+          <h3>Finance plans are not listed for this model yet</h3>
           <p class="small-note">Ask on WhatsApp and we will confirm the current Fortune or Watu option if available.</p>
           <a
             class="button button-primary"
@@ -1060,7 +1074,7 @@ function setMetaTag(selector, attrName, value) {
 
 function updateProductMetadata(product) {
   const title = `${product.name} | Cash Price & Finance | Nakaja Bikes`;
-  const description = `${product.name}: ${product.shortDescription || "View cash price, product details, and available finance rows from Nakaja Bikes."}`;
+  const description = `${product.name}: ${product.shortDescription || "View cash price, product details, and available finance plans from Nakaja Bikes."}`;
   const productUrl = `${window.location.origin}/product/${product.slug}`;
   const imageUrl = product.heroImageUrl || "/public/nakaja-bikes-logo-256.jpg";
 
@@ -1089,7 +1103,7 @@ function buildProductPageHtml(product, catalog) {
       <div class="product-hero-copy">
         <p class="eyebrow">${escapeHtml(product.brand)} · ${escapeHtml(product.category || "Nakaja model")}</p>
         <h1>${escapeHtml(product.name)}</h1>
-        <p class="product-subtitle">${escapeHtml(product.shortDescription || "Review cash price, product details, and approved finance rows for this model.")}</p>
+        <p class="product-subtitle">${escapeHtml(product.shortDescription || "Review cash price, product details, and available finance plans for this model.")}</p>
         <p class="hero-cash-price">${escapeHtml(formatKes(product.cashPrice))}</p>
         <p class="hero-finance-hint">${escapeHtml(getFinanceHeroHint(product, fortunePlans, watuPlans))}</p>
         ${
@@ -1309,7 +1323,8 @@ function initSupportWidget() {
 
   btn.addEventListener("click", () => {
     const message =
-      btn.dataset.whatsappMessage || "Hello Nakaja Bikes, I need help choosing the right bike and plan.";
+      btn.dataset.whatsappMessage ||
+      "Hello Nakaja Bikes, I need help choosing a Duty Max bike, checking payment options, and sorting PDL support.";
     window.location.href = buildWhatsappUrl(message);
   });
 }

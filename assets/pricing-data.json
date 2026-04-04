@@ -1,7 +1,7 @@
 {
   "currency": "KES",
   "default_deposit_amount": 30000,
-  "promo_text": "Running up to 1st May — Full tank and first service free on all purchases on any model.",
+  "promo_text": "Free full tank + first service on every purchase until 1 May 2026.",
   "products": [
     {
       "id": "duty-max-150",
@@ -24,15 +24,15 @@
         "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DutyMax_single_img_4-768x892_bzi271.jpg"
       ],
       "image_alt": "UM Duty Max 150CC motorcycle",
-      "short_description": "A 150CC Duty Max work motorcycle with approved Fortune Credit weekly rows and a published Watu 12-month option.",
+      "short_description": "A 150CC Duty Max built for daily work, with Fortune Credit weekly payments and a Watu 12-month option where approved.",
       "features": [
-        "150CC UM model with cash price and approved finance rows kept in one catalog.",
+        "150CC UM model with clear cash price and payment plans in one place.",
         "Fortune Credit weekly plans are available for 12, 14, and 16 months.",
-        "A published Watu 12-month monthly row is available for this model.",
-        "Current promo and warranty messaging stay visible without covering the page."
+        "A Watu 12-month monthly plan is listed for this model where approved.",
+        "Promo and warranty details stay easy to read while you compare."
       ],
       "promo_enabled": true,
-      "promo_text": "Running up to 1st May — Full tank and first service free on all purchases on any model.",
+      "promo_text": "Free full tank + first service on every purchase until 1 May 2026.",
       "display_order": 1,
       "is_active": true
     },
@@ -56,15 +56,15 @@
         "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DutyMax_single_img_3-768x892_c3rfns.jpg"
       ],
       "image_alt": "UM Duty Max 125CC motorcycle",
-      "short_description": "A 125CC Duty Max option with a lower cash price, approved Fortune Credit rows, and a published Watu 12-month row.",
+      "short_description": "A 125CC Duty Max with a lower cash price, Fortune Credit weekly payments, and a Watu 12-month option where approved.",
       "features": [
         "125CC UM model with the lower Duty Max cash-price entry point.",
-        "Approved Fortune Credit weekly rates are shown for 12, 14, and 16 months.",
-        "Published Watu 12-month monthly data is shown without inventing 18- or 24-month rows.",
-        "WhatsApp enquiries prefill the model and selected repayment plan."
+        "Fortune Credit weekly payments are shown for 12, 14, and 16 months.",
+        "Watu 12-month monthly pricing appears only where approved, with no guessed plans.",
+        "WhatsApp enquiries open with your selected model and plan already filled in."
       ],
       "promo_enabled": true,
-      "promo_text": "Running up to 1st May — Full tank and first service free on all purchases on any model.",
+      "promo_text": "Free full tank + first service on every purchase until 1 May 2026.",
       "display_order": 2,
       "is_active": true
     },
@@ -88,15 +88,15 @@
         "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DutyMax_single_img_4-768x892_bzi271.jpg"
       ],
       "image_alt": "UM Duty Max Punda 150CC motorcycle",
-      "short_description": "A Duty Max Punda 150CC motorcycle with approved Fortune Credit weekly rows and Watu hidden until monthly rows are supplied.",
+      "short_description": "A Duty Max Punda 150CC made for tough work routes, with Fortune Credit weekly payments and Watu shown only where approved.",
       "features": [
-        "150CC Punda cash price is published from the approved finance data.",
+        "Clear 150CC Punda cash price for quick comparison.",
         "Fortune Credit weekly plans are available for 12, 14, and 16 months.",
-        "Watu is hidden for this model until approved Watu rows are supplied.",
+        "Watu is shown only when an approved monthly plan is available for this model.",
         "Mapped to the Duty Max Supabase asset family without mixing DSRX or Max RS images."
       ],
       "promo_enabled": true,
-      "promo_text": "Running up to 1st May — Full tank and first service free on all purchases on any model.",
+      "promo_text": "Free full tank + first service on every purchase until 1 May 2026.",
       "display_order": 3,
       "is_active": true
     },
@@ -120,15 +120,15 @@
         "https://dwrvycpeyknmidrmnnby.supabase.co/storage/v1/object/public/nakaja-assets/UM_Range_DutyMax_single_img_3-768x892_c3rfns.jpg"
       ],
       "image_alt": "UM Duty Max Punda 125CC motorcycle",
-      "short_description": "The lowest cash-price product in this approved catalog, with Fortune Credit weekly rows and no invented Watu values.",
+      "short_description": "The lowest cash-price Duty Max option in this lineup, with Fortune Credit weekly payments and Watu hidden unless approved.",
       "features": [
-        "Lowest published cash price in the current approved Duty Max catalog.",
+        "Lowest cash price in the current Duty Max lineup.",
         "Fortune Credit weekly plans are listed for 12, 14, and 16 months.",
-        "Missing Watu rows are intentionally hidden to avoid unsupported monthly pricing.",
-        "Cash and finance WhatsApp messages include the selected product and plan details."
+        "Watu monthly plans stay hidden when no approved option is available.",
+        "Cash and finance WhatsApp messages include your selected model and plan."
       ],
       "promo_enabled": true,
-      "promo_text": "Running up to 1st May — Full tank and first service free on all purchases on any model.",
+      "promo_text": "Free full tank + first service on every purchase until 1 May 2026.",
       "display_order": 4,
       "is_active": true
     }
