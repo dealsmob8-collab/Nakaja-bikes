@@ -57,6 +57,8 @@ Do not hardcode conflicting numbers in JavaScript or HTML.
 ## Deployment notes
 Cloudflare Pages static deployment from repository root.
 No build step required.
+Use Cloudflare Redirect Rules or Bulk Redirects for host-level redirects; `_redirects` is path-based only.
+Avoid `immutable` cache headers on stable asset filenames unless the filenames are fingerprinted.
 
 ## Review checklist
 - [ ] Correct phone and WhatsApp links everywhere

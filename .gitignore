@@ -1,5 +1,8 @@
+.codex
+.dev.vars
+.env.cloudflare
 .wrangler/
-.dev.vars*
-.env*
-!.dev.vars.example
-!.env.cloudflare.example
+.playwright-cli/
+output/
+.lighthouseci/
+public/site.webmanifest
