@@ -850,7 +850,7 @@ function buildGalleryMarkup(product) {
       return true;
     });
 
-  const heroImage = gallery[0] || "/public/nakaja-bikes-logo-256.jpg";
+  const heroImage = gallery[0] || "/public/logo-nakaja.png";
   const thumbs =
     gallery.length > 1
       ? `
@@ -1094,7 +1094,7 @@ function updateProductMetadata(product) {
   const title = `${product.name} | Cash Price & Finance | Nakaja Bikes`;
   const description = `${product.name}: ${product.shortDescription || "View cash price, product details, and available finance plans from Nakaja Bikes."}`;
   const productUrl = `${window.location.origin}/product/${product.slug}`;
-  const imageUrl = product.heroImageUrl || "/public/nakaja-bikes-logo-256.jpg";
+  const imageUrl = product.heroImageUrl || "/public/logo-nakaja.png";
 
   document.title = title;
   setMetaTag('meta[name="description"]', "content", description);
