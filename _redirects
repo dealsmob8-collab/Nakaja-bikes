@@ -1,2 +1,2 @@
-/product / 301
-/product/* / 301
+/index.html / 301
+/product/* /product.html 200
