@@ -1,2 +1,3 @@
-/index.html / 301
+# Pages _redirects only supports path-based sources.
+# Configure host-level redirects (HTTP to HTTPS, pages.dev to custom domain) in Cloudflare Redirect Rules or Bulk Redirects.
 /product/* /product.html 200
