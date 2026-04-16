@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nakaja Bikes - Product View</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <style>
+        /* Basic styles for gallery and product details */
+        body { font-family: Arial, sans-serif; }
+        .gallery { display: flex; flex-direction: column; align-items: center; }
+        .main-image { width: 100%; max-width: 600px; }
+        .thumbnails { margin-top: 10px; }
+        .thumbnail { width: 80px; height: 80px; margin: 5px; cursor: pointer; }
+        .details { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <img id="mainImage" src="default-image.jpg" alt="Bike Image" class="main-image">
+        <div class="thumbnails">
+            <img src="image1.jpg" alt="Image 1" class="thumbnail" onclick="changeImage('image1.jpg')">
+            <img src="image2.jpg" alt="Image 2" class="thumbnail" onclick="changeImage('image2.jpg')">
+            <img src="image3.jpg" alt="Image 3" class="thumbnail" onclick="changeImage('image3.jpg')">
+        </div>
+        <div class="details">
+            <h2>Nakaja Bike Model</h2>
+            <p><strong>Specifications:</strong></p>
+            <ul>
+                <li>Frame: Lightweight Aluminum</li>
+                <li>Gears: 18 Speed</li>
+                <li>Brakes: Disc brakes</li>
+                <li>Color: Multiple options</li>
+            </ul>
+            <p><strong>Financing Options:</strong> Available monthly payments starting at $89/month.</p>
+        </div>
+    </div>
+    <script>
+        function changeImage(image) {
+            const mainImage = document.getElementById('mainImage');
+            gsap.to(mainImage, { opacity: 0, duration: 0.5, onComplete: () => {
+                mainImage.src = image;
+                gsap.to(mainImage, { opacity: 1, duration: 0.5 });
+            }});
+        }
+    </script>
+</body>
+</html>
